@@ -86,7 +86,6 @@ export const ProjectPage = () => {
               <ProjectColumnCard
                 key={column.id}
                 column={column}
-                selectedBoardId={selectedBoard.id}
                 renameColumn={(columnId, name) => renameColumn(selectedBoard.id, columnId, name)}
                 removeColumn={(columnId) => removeColumn(selectedBoard.id, columnId)}
                 toggleTask={(columnId, taskId) => toggleTask(selectedBoard.id, columnId, taskId)}

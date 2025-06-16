@@ -16,7 +16,7 @@ interface ProjectBoardTabsProps {
 
 export const ProjectBoardTabs: FC<ProjectBoardTabsProps> = ({
   boards,
-  selectedBoardId,
+  selectedBoardId, 
   setSelectedBoardId,
   boardUI,
   boardDispatch,

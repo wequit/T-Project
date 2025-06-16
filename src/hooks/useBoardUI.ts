@@ -9,7 +9,7 @@ interface BoardUIState {
 
 type BoardUIAction =
   | { type: "SET_NEW_NAME"; payload: string }
-  | { type: "SET_RENAME_ID"; payload: string }
+  | { type: "SET_RENAME_ID"; payload: string | null }
   | { type: "SET_RENAME_VALUE"; payload: string }
   | { type: "TOGGLE_MENU"; payload: string | null }
   | { type: "RESET" };

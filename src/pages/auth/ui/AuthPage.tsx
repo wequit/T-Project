@@ -1,10 +1,18 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginForm } from "@/features/auth-login";
+import { useAuthStore } from "@/entities/user";
 import { APP_NAME } from "@/shared/config";
 
 export const AuthPage = () => {
-  const handleLogin = (email: string, password: string) => {
-    console.log({ email, password });
-  };
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
@@ -20,7 +28,7 @@ export const AuthPage = () => {
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-          <LoginForm onSubmit={handleLogin} />
+          <LoginForm />
         </div>
       </div>
     </div>

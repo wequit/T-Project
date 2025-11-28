@@ -1,0 +1,43 @@
+<script setup lang="ts">
+import { OrderFileSection } from '@rupoi/shared/ui'
+import { useOrderShoe, type OrderShoeDTO } from '@rupoi/entities/order-shoe'
+import type { FileDto } from '@common/shared/api'
+import type { ID } from '@rupoi/shared/model'
+
+interface Props {
+  orderShoe: OrderShoeDTO | null | undefined
+  disabled?: boolean
+}
+
+const props = defineProps<Props>()
+
+const { addFileMutation, removeFileMutation } = useOrderShoe({
+  id: () => props.orderShoe?.id ?? null
+})
+
+function handleAddFile(orderId: ID, fileData: FileDto) {
+  addFileMutation.mutate({
+    orderId,
+    data: {
+      fileId: fileData.id,
+      filePath: fileData.objectKey,
+      fileSize: fileData.sizeBytes,
+      fileName: fileData.originalName,
+    }
+  })
+}
+
+function handleRemoveFile(fileId: ID, orderId: ID) {
+  removeFileMutation.mutate({ fileId, orderId })
+}
+</script>
+
+<template>
+  <OrderFileSection
+    :order="orderShoe"
+    :disabled="disabled"
+    :on-add-file="handleAddFile"
+    :on-remove-file="handleRemoveFile"
+  />
+</template>
+

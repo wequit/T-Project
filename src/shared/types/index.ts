@@ -1,17 +1,10 @@
-// Базовые типы задач
-export type Task = {
+export type User = {
   id: string;
-  title: string;
-  completed: boolean;
-  listId: string;
+  username: string;
+  email?: string;
+  avatar?: string;
 };
 
-export type List = {
-  id: string;
-  title: string;
-};
-
-// Типы проектов
 export type ProjectTask = {
   id: string;
   title: string;
@@ -47,7 +40,6 @@ export type Project = {
   boards?: Board[];
 };
 
-// Типы компании
 export type Company = {
   id: string;
   name: string;
@@ -60,7 +52,7 @@ export type Company = {
 };
 
 // UI типы
-export type BoardAction = 
+export type BoardAction =
   | { type: "SET_RENAME_ID"; payload: string | null }
   | { type: "SET_RENAME_VALUE"; payload: string }
   | { type: "TOGGLE_MENU"; payload: string | null }
@@ -72,5 +64,3 @@ export interface BoardUI {
   openBoardMenuId: string | null;
   newBoardName: string;
 }
-
-

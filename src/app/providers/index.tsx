@@ -1,11 +1,14 @@
 import { BrowserRouter } from "react-router-dom";
+import { QueryProvider } from "./query";
 import { AppRouter } from "./router";
 
 export const Providers = () => {
   return (
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
+    <QueryProvider>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </QueryProvider>
   );
 };
 

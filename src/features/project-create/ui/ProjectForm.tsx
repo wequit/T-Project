@@ -1,23 +1,19 @@
 import { useState } from "react";
 
 type ProjectFormProps = {
-  onSubmit: (name: string, description: string, color: string) => void;
+  onSubmit: (name: string, description: string) => void;
   onCancel: () => void;
 };
-
-const PROJECT_COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444"];
 
 export const ProjectForm = ({ onSubmit, onCancel }: ProjectFormProps) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedColor, setSelectedColor] = useState(PROJECT_COLORS[0]);
 
   const handleSubmit = () => {
     if (name.trim()) {
-      onSubmit(name, description, selectedColor);
+      onSubmit(name, description);
       setName("");
       setDescription("");
-      setSelectedColor(PROJECT_COLORS[0]);
     }
   };
 
@@ -39,18 +35,6 @@ export const ProjectForm = ({ onSubmit, onCancel }: ProjectFormProps) => {
           className="w-full px-4 py-2 border rounded-lg"
           rows={3}
         />
-        <div className="flex gap-2">
-          {PROJECT_COLORS.map((color) => (
-            <button
-              key={color}
-              onClick={() => setSelectedColor(color)}
-              className={`w-8 h-8 rounded-full ${
-                selectedColor === color ? "ring-2 ring-offset-2" : ""
-              }`}
-              style={{ backgroundColor: color }}
-            />
-          ))}
-        </div>
         <div className="flex gap-2">
           <button
             onClick={handleSubmit}

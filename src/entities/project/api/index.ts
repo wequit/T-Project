@@ -1,0 +1,2 @@
+export { projectService } from "./service";
+

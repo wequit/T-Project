@@ -1,2 +1,0 @@
-export { pinService } from './service'
-
